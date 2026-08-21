@@ -41,8 +41,8 @@
   h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 650; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
   .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
   .eyebrow {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--signal); margin: 0 0 14px; display: block;
+    font-size: 0.92rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--signal); margin: 0 0 16px; display: block;
   }
   .accent { color: var(--signal); }
 
@@ -67,14 +67,17 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 0 rgba(255,255,255,0.06);
   }
-  .nav-brand { display: flex; align-items: center; gap: 10px; }
-  .nav-brand img { width: 30px; height: 30px; border-radius: 6px; background: #fff; padding: 3px; }
-  .nav-brand span { font-family: 'Fraunces', serif; font-weight: 650; color: #F3F5F7; font-size: 1.05rem; letter-spacing: 0.01em; }
-  .nav-links { display: flex; gap: 30px; }
-  .nav-item { position: relative; padding: 8px 0; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; }
+  .nav-brand img { width: 44px; height: 44px; border-radius: 8px; background: #fff; padding: 4px; }
+  .nav-brand span { font-family: 'Fraunces', serif; font-weight: 650; color: #F3F5F7; font-size: 1.25rem; letter-spacing: 0.01em; }
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  /* Every nav item gets identical padding whether or not it carries a
+     dropdown - previously only the dropdown items had a padded wrapper,
+     which threw off vertical alignment against the plain links. */
+  .nav-item { position: relative; display: flex; align-items: center; }
   .nav-links a.nav-link {
-    color: #C9D3DB; font-size: 0.86rem; font-weight: 500; padding-bottom: 4px;
-    border-bottom: 1px solid transparent;
+    display: inline-block; color: #C9D3DB; font-size: 0.9rem; font-weight: 500;
+    padding: 8px 0 12px; border-bottom: 1px solid transparent;
     transition: color 150ms ease-out, border-color 150ms ease-out;
   }
   .nav-item:hover a.nav-link, .nav-link:focus-visible { color: #F3F5F7; border-color: var(--signal); }
@@ -251,7 +254,10 @@
   .quote-section img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
   .quote-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(7,27,51,0.90) 0%, rgba(7,27,51,0.72) 45%, rgba(7,27,51,0.35) 100%); }
   .quote-inner { position: relative; z-index: 2; max-width: 780px; }
-  .quote-inner q { font-family: 'Fraunces', serif; font-style: italic; font-weight: 550; font-size: clamp(1.6rem, 3.6vw, 2.6rem); line-height: 1.25; display: block; }
+  /* Plex Sans, not Fraunces - a full-sentence quote is flowing text, and
+     Fraunces' idiosyncratic f/y/g shapes read as odd rather than elegant
+     at sentence length (same reasoning as the About lede). */
+  .quote-inner q { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: clamp(1.5rem, 3.2vw, 2.3rem); line-height: 1.35; display: block; letter-spacing: -0.01em; }
   .quote-inner cite { display: block; margin-top: 26px; font-style: normal; font-size: 0.85rem; color: #A9BBC8; }
 
   /* ---------- CHECKLIST ---------- */
@@ -278,7 +284,7 @@
   footer { background: var(--ink-deep); color: #93A6B5; padding: 64px 0 32px; }
   .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 40px; }
   .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .footer-brand img { width: 26px; height: 26px; border-radius: 6px; background: #fff; padding: 2px; }
+  .footer-brand img { width: 36px; height: 36px; border-radius: 7px; background: #fff; padding: 3px; }
   .footer-brand span { font-family: 'Fraunces', serif; font-weight: 650; color: #F3F5F7; }
   footer h5 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #5C7A8C; margin: 0 0 14px; font-weight: 600; }
   footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -450,7 +456,7 @@
   <div class="quote-scrim"></div>
   <div class="wrap">
     <div class="quote-inner">
-      <q>&ldquo;Any solution we give a client must create value for them, directly or indirectly. We don't sell a service — we earn loyalty and trust, then keep it.&rdquo;</q>
+      <q>Any solution we give a client must create value for them, directly or indirectly. We don't sell a service — we earn loyalty and trust, then keep it.</q>
       <cite>The PYX Promise — company philosophy since 1991</cite>
     </div>
   </div>
