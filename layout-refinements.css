@@ -39,3 +39,353 @@
     font-size: 31px;
   }
 }
+
+/* All services remain visible at a glance. */
+.services .window {
+  overflow: visible;
+}
+
+.services .track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  transform: none !important;
+}
+
+.services .track article {
+  width: auto;
+  min-width: 0;
+  height: 340px;
+}
+
+.services .ctrl {
+  display: none;
+}
+
+/* Assessment */
+.assessment-section {
+  background: #fff;
+  color: #10243a;
+}
+
+.assessment-head {
+  max-width: 850px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.assessment-head .ey {
+  color: #a71e2d;
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.assessment-head h2 {
+  color: #07182b;
+  font-size: clamp(44px, 5vw, 68px);
+  margin-top: 14px;
+}
+
+.assessment-head p {
+  color: #617487;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.assessment-section form {
+  max-width: 920px;
+  margin: auto;
+  padding: 28px;
+  border: 1px solid #dce4eb;
+  border-radius: 20px;
+  background: #f4f7f9;
+  box-shadow: 0 18px 50px rgba(7, 24, 43, .08);
+}
+
+.assessment-section input,
+.assessment-section textarea {
+  border: 1px solid #d7e0e7;
+  background: #fff;
+}
+
+.assessment-section form small {
+  color: #667a8d;
+}
+
+/* Careers */
+.careers {
+  background: linear-gradient(130deg, #eef3f6, #fff);
+}
+
+.careers-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.careers p {
+  color: #607487;
+  line-height: 1.75;
+  max-width: 650px;
+}
+
+.career-cta {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 13px 18px;
+  border-radius: 8px;
+  background: #a71e2d;
+  color: #fff;
+  font-weight: 800;
+}
+
+.career-paths {
+  display: grid;
+  gap: 12px;
+}
+
+.career-paths div {
+  padding: 22px;
+  border: 1px solid #dce4eb;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.career-paths b,
+.career-paths span {
+  display: block;
+}
+
+.career-paths span {
+  margin-top: 6px;
+  color: #718397;
+  font-size: 13px;
+}
+
+/* Contact and map */
+.company-contact {
+  background: #07182b;
+  color: #fff;
+}
+
+.contact-head {
+  max-width: 820px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.contact-head h2 {
+  font-size: clamp(42px, 5vw, 64px);
+}
+
+.contact-head p {
+  color: #b9c8d5;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 20px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 30px;
+  border: 1px solid #ffffff25;
+  border-radius: 18px;
+  background: #102b49;
+}
+
+.contact-details small {
+  display: block;
+  margin-bottom: 7px;
+  color: #ddb153;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.contact-details b,
+.contact-details a {
+  display: block;
+  line-height: 1.55;
+}
+
+.map-link {
+  color: #fff;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: #a71e2d;
+  text-underline-offset: 5px;
+}
+
+.map {
+  width: 100%;
+  min-height: 440px;
+  border: 0;
+  border-radius: 18px;
+}
+
+/* Chat assistant */
+.chat-launcher {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px 10px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: #a71e2d;
+  color: #fff;
+  box-shadow: 0 12px 36px rgba(7, 24, 43, .3);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.chat-launcher span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #07182b;
+}
+
+.chat-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 82px;
+  z-index: 90;
+  width: min(380px, calc(100vw - 28px));
+  overflow: hidden;
+  border: 1px solid #dce4eb;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 22px 65px rgba(7, 24, 43, .28);
+}
+
+.chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #07182b;
+  color: #fff;
+}
+
+.chat-head small {
+  display: block;
+  margin-top: 3px;
+  color: #b9c8d5;
+}
+
+.chat-head button {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.chat-messages {
+  max-height: 260px;
+  overflow: auto;
+  padding: 14px;
+  background: #f4f7f9;
+}
+
+.chat-messages p {
+  width: fit-content;
+  max-width: 88%;
+  margin: 0 0 9px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  line-height: 1.45;
+  font-size: 13px;
+}
+
+.chat-messages .bot {
+  background: #fff;
+  color: #263d53;
+}
+
+.chat-messages .user {
+  margin-left: auto;
+  background: #a71e2d;
+  color: #fff;
+}
+
+.chat-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px;
+}
+
+.chat-choices button {
+  padding: 7px 9px;
+  border: 1px solid #cfd9e1;
+  border-radius: 999px;
+  background: #fff;
+  color: #10243a;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chat-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+  padding: 12px;
+  border-top: 1px solid #e1e8ed;
+}
+
+.chat-form input {
+  min-width: 0;
+  border: 1px solid #cfd9e1;
+}
+
+.chat-form button {
+  grid-column: auto;
+  padding: 0 13px;
+}
+
+@media (max-width: 850px) {
+  .services .track,
+  .careers-grid,
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .careers-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .services .track {
+    grid-template-columns: 1fr;
+  }
+
+  .assessment-section form {
+    padding: 18px;
+  }
+
+  .chat-launcher {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .chat-panel {
+    right: 14px;
+    bottom: 72px;
+  }
+}
