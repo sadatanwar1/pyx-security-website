@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title><%= settings.site.title %></title>
+  <meta name="description" content="<%= settings.site.description %>">
+  <link rel="stylesheet" href="/cms-preview.css">
+  <link rel="stylesheet" href="/layout-refinements.css">
+  <style><% Object.values(sections).forEach(section => { const selector=section.section_key==='promise'?'.promise':'#'+section.section_key; %>.site-sections><%= selector %>{order:<%= section.sort_order %>}<% }) %></style>
+</head>
+<body>
+<div class="notice"><%= settings.site.notice %></div>
+<nav><div class="w nav-inner">
+  <a class="brand" href="#top"><img src="<%= settings.site.logo %>" alt="PYX Security Services logo"><span><b><%= settings.site.companyName %></b><small><%= settings.site.strapline %></small></span></a>
+  <div class="nav-actions"><div class="links">
+    <% if (sections.services) { %><a href="#services">Services</a><% } %>
+    <% if (sections.sectors) { %><a href="#sectors">Sectors</a><% } %>
+    <% if (sections.digital) { %><a href="#digital">PYX Digital</a><% } %>
+    <% if (sections.projects && projects.length) { %><a href="#projects">Projects</a><% } %>
+    <% if (sections.insights) { %><a href="#insights">Insights</a><% } %>
+    <% if (sections.careers) { %><a href="#careers">Careers</a><% } %>
+    <% if (sections.contact) { %><a href="#contact">Contact</a><% } %>
+    <% if (sections.assessment) { %><a class="cta" href="#assessment">Request Assessment</a><% } %>
+  </div><details class="signin"><summary>Sign In <span aria-hidden="true">⌄</span></summary><div class="signin-menu"><a href="/cms"><b>Admin</b><small>Website content management</small></a><a href="/portal.html#employee"><b>Employee</b><small>Employee &amp; field workspace</small></a><a href="/portal.html#customer"><b>Customer</b><small>Customer service portal</small></a></div></details></div>
+</div></nav>
+
+<header class="hero" id="top">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata"><source src="<%= settings.hero.video %>" type="video/mp4"></video><div class="hero-shade"></div>
+  <div class="w hero-content"><div class="ey"><%= settings.hero.kicker %></div><h1><%= settings.hero.title %></h1><p><%= settings.hero.body %></p><div class="buttons"><a class="red" href="#assessment"><%= settings.hero.primaryLabel %></a><a class="outline" href="#services"><%= settings.hero.secondaryLabel %></a></div></div>
+  <div class="w stats"><% settings.hero.stats.forEach(stat => { %><div><strong data-count="<%= stat.value %>" data-suffix="<%= stat.suffix %>">0<%= stat.suffix %></strong><span><%= stat.label %></span></div><% }) %></div>
+</header>
+
+<main class="site-sections">
+<% if (sections.promise) { const s=sections.promise; %>
+<section class="promise"><div class="w"><div class="ey section-kicker"><%= s.kicker %></div><div class="pg"><div><h2><%= s.title %></h2><p><%= s.body %></p><% if (s.extra.quote) { %><div class="quote"><%= s.extra.quote %></div><% } %></div><img class="pimg" src="<%= s.extra.image || '/assets/sectors/banking-uniform-v4.png' %>" alt="PYX security and access-control capability"></div></div></section>
+<% } %>
+
+<% if (sections.services) { const s=sections.services; %>
+<section class="services" id="services"><div class="w"><div class="ey section-kicker section-kicker-dark"><%= s.kicker %></div><div class="head"><div><h2><%= s.title %></h2></div><p><%= s.body %></p></div><div class="window"><div class="track" id="track">
+  <% services.forEach(service => { %><article>
+    <% if (service.video_url) { %><video data-service-video data-start="<%= service.video_start %>" data-end="<%= service.video_end %>" autoplay muted loop playsinline preload="metadata"><source src="<%= service.video_url %>" type="video/mp4"></video><% } else { %><img src="<%= service.image_url %>" alt="<%= service.title %>"><% } %>
+    <div><small>PYX CAPABILITY</small><h3><%= service.title %></h3><p><%= service.summary %></p><a href="/services/<%= service.slug %>">Learn more →</a></div>
+  </article><% }) %>
+</div></div></div></section>
+<% } %>
+
+<% if (sections.sectors) { const s=sections.sectors; %>
+<section id="sectors"><div class="w"><div class="ey section-kicker"><%= s.kicker %></div><div class="head"><div><h2><%= s.title %></h2></div><p><%= s.body %></p></div><div class="sectors"><% sectors.forEach(sector => { %><div style="background-image:url('<%= sector.image_url %>')"><b><%= sector.title %></b></div><% }) %></div></div></section>
+<% } %>
+
+<% if (sections.digital) { const s=sections.digital; %>
+<section class="digital" id="digital"><div class="w"><div class="ey section-kicker"><%= s.kicker %></div><h2 class="section-title-centered"><%= s.title %></h2><p class="section-intro"><%= s.body %></p><div class="dg"><div class="dash"><b><%= s.extra.dashboardTitle || 'PYX Digital Dashboard Preview' %></b><div class="metrics"><div><small>Sites</small><strong>560+</strong></div><div><small>Personnel</small><strong>2,800+</strong></div><div><small>Status</small><strong>Live</strong></div></div><div class="bars"><i style="height:35%"></i><i style="height:67%"></i><i style="height:48%"></i><i style="height:82%"></i><i style="height:63%"></i><i style="height:93%"></i></div></div><div class="roles"><% (s.extra.roles || []).forEach(role => { %><div><small><%= role.label %></small><h3><%= role.title %></h3><p><%= role.body %></p></div><% }) %></div></div><p><a class="cta" href="/portal.html"><%= s.extra.ctaLabel || 'Open PYX Digital walkthrough →' %></a></p></div></section>
+<% } %>
+
+<% if (sections.projects && projects.length) { const s=sections.projects; %>
+<section class="projects" id="projects"><div class="w"><div class="ey section-kicker"><%= s.kicker %></div><div class="head"><div><h2><%= s.title %></h2></div><p><%= s.body %></p></div><div class="content-cards"><% projects.forEach(item => { %><article><a href="/projects/<%= item.slug %>"><img src="<%= item.image_url %>" alt=""><div><small><%= item.sector || 'PYX PROJECT' %></small><h3><%= item.title %></h3><p><%= item.summary %></p><span>View project →</span></div></a></article><% }) %></div></div></section>
+<% } %>
+
+<% if (sections.insights) { const s=sections.insights; %>
+<section class="insights" id="insights"><div class="w"><div class="ey section-kicker"><%= s.kicker %></div><div class="head"><div><h2><%= s.title %></h2></div><p><%= s.body %></p></div><div class="news"><% posts.forEach(item => { const date=new Date(item.published_at||item.created_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); %><article><a href="/insights/<%= item.slug %>"><img src="<%= item.image_url %>" alt=""><div><small><%= item.type.toUpperCase() %> · <%= date.toUpperCase() %></small><h3><%= item.title %></h3><span>Read article →</span></div></a></article><% }) %></div></div></section>
+<% } %>
+
+<% if (sections.careers) { const s=sections.careers; %>
+<section class="careers" id="careers"><div class="w"><div class="ey section-kicker"><%= s.kicker %></div><div class="careers-grid"><div><h2><%= s.title %></h2><p><%= s.body %></p><button class="career-cta" type="button" data-open-career>Share your profile →</button></div><div class="career-paths"><% if (jobs.length) { jobs.forEach(job => { %><a href="/careers/<%= job.slug %>"><div><b><%= job.title %></b><span><%= [job.department,job.location_label,job.employment_type].filter(Boolean).join(' · ') %></span></div></a><% }) } else { %><div><b>Future opportunities</b><span><%= settings.careers.emptyMessage %></span></div><% (s.extra.paths || []).forEach(path => { %><div><b><%= path.title %></b><span><%= path.body %></span></div><% }) %><% } %></div></div></div></section>
+<% } %>
+
+<% if (sections.assessment) { const s=sections.assessment; %>
+<section class="contact assessment-section" id="assessment"><div class="w"><div class="assessment-head"><div class="ey section-kicker"><%= s.kicker %></div><h2><%= s.title %></h2><p><%= s.body %></p><p class="form-note"><b><%= s.extra.note || 'Mobile number and City / Site are required.' %></b></p></div><form id="assessmentForm"><input name="name" placeholder="Name *" required><input name="company" placeholder="Company"><input name="email" placeholder="Work Email *" required type="email"><input name="mobile" placeholder="Mobile Number *" required type="tel"><input name="industry" placeholder="Sector / Industry"><input name="location" placeholder="City / Site *" required><input name="requirement" placeholder="Security / Technology Requirement"><textarea name="details" placeholder="Tell us about the assessment need, approximate scale and preferred timeline"></textarea><button><%= s.extra.buttonLabel || 'Request Assessment' %></button><small class="form-status" role="status">Your request will be saved securely for the PYX team.</small></form></div></section>
+<% } %>
+
+<% if (sections.contact) { const s=sections.contact; const map=encodeURIComponent(settings.site.mapQuery); %>
+<section class="company-contact" id="contact"><div class="w"><div class="contact-head"><div class="ey section-kicker section-kicker-dark"><%= s.kicker %></div><h2><%= s.title %></h2><p><%= s.body %></p></div><div class="contact-grid"><div class="contact-details"><div><small>OFFICE ADDRESS</small><b><%= settings.site.address %></b></div><div><small>TELEPHONE</small><% settings.site.phones.forEach(phone => { %><a href="tel:<%= phone.replace(/\s/g,'') %>"><%= phone %></a><% }) %></div><div><small>EMAIL</small><a href="mailto:<%= settings.site.email %>"><%= settings.site.email %></a></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=<%= map %>" target="_blank" rel="noopener">Open in Google Maps →</a></div><iframe class="map" title="Google Map showing PYX Security Services office" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=<%= map %>&amp;output=embed"></iframe></div><form class="contact-form" id="contactForm"><h3><%= s.extra.messageHeading || 'Send us a message' %></h3><input name="name" placeholder="Name *" required><input name="company" placeholder="Company"><input name="email" placeholder="Email *" type="email" required><input name="mobile" placeholder="Mobile number"><textarea name="details" placeholder="How can we help? *" required></textarea><button><%= s.extra.buttonLabel || 'Send Message' %></button><small class="form-status" role="status">The PYX team will receive your message.</small></form></div></section>
+<% } %>
+</main>
+
+<footer><div class="w"><%= settings.site.footer %> · <a href="mailto:<%= settings.site.email %>"><%= settings.site.email %></a></div></footer>
+
+<% if (settings.site.chatEnabled) { %><button class="chat-launcher" id="chatLauncher" type="button" aria-controls="chatPanel" aria-expanded="false"><span>PYX</span> Chat with us</button><aside class="chat-panel" id="chatPanel" aria-label="PYX chat assistant" hidden><div class="chat-head"><div><b>PYX Assistant</b><small>Security + Technology guidance</small></div><button id="chatClose" type="button" aria-label="Close chat">×</button></div><div class="chat-messages" id="chatMessages"><p class="bot">Hello. How can I help you today?</p></div><div class="chat-choices"><button data-chat="services">Explore services</button><button data-chat="assessment">Request assessment</button><button data-chat="careers">Careers</button><button data-chat="location">Office location</button></div><form class="chat-form" id="chatForm"><input id="chatInput" aria-label="Type your question" placeholder="Type your question…" autocomplete="off"><button>Send</button></form></aside><% } %>
+
+<div class="modal" id="careerModal"><div class="modalBox"><button class="close" data-close="careerModal">×</button><div class="ey">CAREERS AT PYX</div><h2>Share your profile</h2><form id="careerForm"><input name="name" placeholder="Name *" required><input name="email" placeholder="Email *" type="email" required><input name="mobile" placeholder="Mobile number"><input name="location" placeholder="City / Site"><input name="requirement" placeholder="Area of interest"><textarea name="details" placeholder="Briefly tell us about your experience"></textarea><button>Submit Profile</button><small class="form-status" role="status">For attachments, the PYX team may contact you by email.</small></form></div></div>
+<script src="/site.js"></script>
+</body></html>

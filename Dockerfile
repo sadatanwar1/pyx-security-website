@@ -1,9 +1,12 @@
-FROM nginx:alpine
+FROM node:22-bookworm-slim
 
+ENV NODE_ENV=production
 ENV PORT=8080
+WORKDIR /app
 
-COPY nginx.conf /etc/nginx/templates/default.conf.template
-COPY index.html portal.html cms-preview.html cms-preview.css cms-preview.js layout-refinements.css /usr/share/nginx/html/
-COPY assets /usr/share/nginx/html/assets
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+COPY . .
 
 EXPOSE 8080
+CMD ["npm", "start"]

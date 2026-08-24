@@ -2,3 +2,7 @@
 .gitignore
 .railway
 README.md
+node_modules
+.env
+uploads
+assets-source

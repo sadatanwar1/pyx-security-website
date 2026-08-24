@@ -1,1 +1,4 @@
 assets-source/
+node_modules/
+.env
+uploads/
