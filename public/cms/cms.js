@@ -3,8 +3,9 @@ const $=selector=>document.querySelector(selector);
 const esc=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 const fmt=value=>value?new Date(value).toLocaleString('en-PK',{dateStyle:'medium',timeStyle:'short'}):'—';
 const title=value=>value.replace(/_/g,' ').replace(/\b\w/g,char=>char.toUpperCase());
-function maskPasswords(scope=document){scope.querySelectorAll('.password-wrap').forEach(wrap=>{const input=wrap.querySelector('input'),button=wrap.querySelector('.password-toggle');input.type='password';button.textContent='Show';button.setAttribute('aria-pressed','false');button.setAttribute('aria-label',button.getAttribute('aria-label').replace(/^Hide/,'Show'))})}
-document.addEventListener('click',event=>{const button=event.target.closest('.password-toggle');if(!button)return;const input=button.closest('.password-wrap').querySelector('input'),show=input.type==='password';input.type=show?'text':'password';button.textContent=show?'Hide':'Show';button.setAttribute('aria-pressed',String(show));button.setAttribute('aria-label',button.getAttribute('aria-label').replace(show?'Show':'Hide',show?'Hide':'Show'));input.focus()});
+function setPasswordVisibility(button,show){const input=button.closest('.password-wrap').querySelector('input'),label=button.dataset.passwordLabel||'password';input.type=show?'text':'password';button.classList.toggle('is-visible',show);button.setAttribute('aria-pressed',String(show));button.setAttribute('aria-label',`${show?'Hide':'Show'} ${label}`);button.setAttribute('title',`${show?'Hide':'Show'} ${label}`)}
+function maskPasswords(scope=document){scope.querySelectorAll('.password-toggle').forEach(button=>setPasswordVisibility(button,false))}
+document.addEventListener('click',event=>{const button=event.target.closest('.password-toggle');if(!button)return;event.preventDefault();setPasswordVisibility(button,button.getAttribute('aria-pressed')!=='true');button.closest('.password-wrap').querySelector('input').focus()});
 
 async function api(url,options={}){
   const headers={...(options.headers||{})};if(options.body&&!(options.body instanceof FormData))headers['content-type']='application/json';if(options.method&&options.method!=='GET')headers['x-csrf-token']=state.csrf;

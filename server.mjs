@@ -42,6 +42,7 @@ app.use(cookieParser());
 app.use(loadSession);
 app.use('/assets', express.static(path.join(root, 'assets'), { maxAge: '7d', immutable: true }));
 app.use('/uploads', express.static(uploadDir, { maxAge: '1d' }));
+app.use('/cms', (_req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
 app.use(express.static(path.join(root, 'public'), { maxAge: process.env.NODE_ENV === 'production' ? '1h' : 0 }));
 app.get('/cms-preview.css', (_req, res) => res.sendFile(path.join(root, 'cms-preview.css')));
 app.get('/layout-refinements.css', (_req, res) => res.sendFile(path.join(root, 'layout-refinements.css')));

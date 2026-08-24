@@ -26,14 +26,21 @@ assert.match(result.text, /LATEST NEWS &amp; SECURITY INSIGHTS/);
 
 result = await request('/cms');
 assert.equal(result.response.status, 200);
+assert.match(result.response.headers.get('cache-control') || '', /no-store/);
 assert.match(result.text, /Website Content Manager/);
 assert.match(result.text, /id="loginView"/);
 assert.match(result.text, /id="app" hidden/);
 assert.equal((result.text.match(/class="password-toggle"/g) || []).length, 4);
+assert.equal((result.text.match(/class="eye-icon"/g) || []).length, 4);
+assert.match(result.text, /cms\.js\?v=eye-20260824-2/);
 result = await request('/cms/cms.css');
 assert.equal(result.response.status, 200);
 assert.match(result.text, /\[hidden\]\{display:none!important\}/);
 assert.match(result.text, /\.password-toggle/);
+assert.match(result.text, /\.eye-icon/);
+result = await request('/cms/cms.js?v=eye-20260824-2');
+assert.equal(result.response.status, 200);
+assert.match(result.text, /function setPasswordVisibility/);
 
 result = await request('/api/cms/login', { method: 'POST', body: JSON.stringify({ email: 'admin@example.com', password: 'LocalTestPassword123!' }) });
 assert.equal(result.response.status, 200);
