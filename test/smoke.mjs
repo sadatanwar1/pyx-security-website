@@ -27,6 +27,11 @@ assert.match(result.text, /LATEST NEWS &amp; SECURITY INSIGHTS/);
 result = await request('/cms');
 assert.equal(result.response.status, 200);
 assert.match(result.text, /Website Content Manager/);
+assert.match(result.text, /id="loginView"/);
+assert.match(result.text, /id="app" hidden/);
+result = await request('/cms/cms.css');
+assert.equal(result.response.status, 200);
+assert.match(result.text, /\[hidden\]\{display:none!important\}/);
 
 result = await request('/api/cms/login', { method: 'POST', body: JSON.stringify({ email: 'admin@example.com', password: 'LocalTestPassword123!' }) });
 assert.equal(result.response.status, 200);
