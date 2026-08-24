@@ -1,5 +1,5 @@
-# PYX Security — Website Preview
+# PYX Security Website
 
-A one-shot corporate website concept for PYX Security Services (Pvt.) Ltd — real footage, real services, real proof points from the company's own profile. Design system and rationale live in the main [`pyx-security-platform`](https://github.com/sadatanwar1/pyx-security-platform) repository's `DESIGN.md`.
+The public corporate website for PYX Security Services (Pvt.) Ltd., including the hero video, service and sector content, PYX Digital portal walkthrough, assessment form, careers, contact details, map and chat assistant.
 
-Single self-contained `index.html` (real hero video and photos embedded as data URIs), served by nginx via the included `Dockerfile`.
+The site is served by nginx through the included `Dockerfile`. The Railway deployment copies the complete website—including all styles, scripts, images, video and portal pages—and listens on Railway's assigned port.
