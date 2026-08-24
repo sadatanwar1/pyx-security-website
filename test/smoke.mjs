@@ -29,9 +29,11 @@ assert.equal(result.response.status, 200);
 assert.match(result.text, /Website Content Manager/);
 assert.match(result.text, /id="loginView"/);
 assert.match(result.text, /id="app" hidden/);
+assert.equal((result.text.match(/class="password-toggle"/g) || []).length, 4);
 result = await request('/cms/cms.css');
 assert.equal(result.response.status, 200);
 assert.match(result.text, /\[hidden\]\{display:none!important\}/);
+assert.match(result.text, /\.password-toggle/);
 
 result = await request('/api/cms/login', { method: 'POST', body: JSON.stringify({ email: 'admin@example.com', password: 'LocalTestPassword123!' }) });
 assert.equal(result.response.status, 200);
