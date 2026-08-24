@@ -1,5 +1,7 @@
 const tr=document.getElementById('track'),cards=[...tr.children];
 
+const signInMenu=document.querySelector('.signin');if(signInMenu){document.addEventListener('click',e=>{if(!signInMenu.contains(e.target))signInMenu.removeAttribute('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')signInMenu.removeAttribute('open')})}
+
 const escort=document.querySelector('[data-escort-video]');if(escort){const start=13,end=19.2,play=()=>escort.play().catch(()=>{});escort.addEventListener('loadedmetadata',()=>{escort.currentTime=start;play()},{once:true});escort.addEventListener('timeupdate',()=>{if(escort.currentTime>=end||escort.currentTime<start-.2){escort.currentTime=start;play()}})}
 
 function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden'}function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));document.querySelectorAll('.modal').forEach(m=>m.onclick=e=>{if(e.target===m)closeModal(m.id)});
